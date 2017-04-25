@@ -44,6 +44,7 @@ if $ARTIK710; then
 	sudo fastboot flash fip-secure $OUTPUT_DIR/fip-secure.img
 	sudo fastboot flash fip-nonsecure $OUTPUT_DIR/fip-nonsecure.img
 else
+	sudo fastboot flash flag $OUTPUT_DIR/flag.img
 	sudo fastboot flash loader $OUTPUT_DIR/loader-emmc.img
 	sudo fastboot flash blmon $OUTPUT_DIR/bl_mon.img
 	sudo fastboot flash bootloader $OUTPUT_DIR/bootloader.img
