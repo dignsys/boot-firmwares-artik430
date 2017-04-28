@@ -49,7 +49,6 @@ else
 	sudo fastboot flash blmon $OUTPUT_DIR/bl_mon.img
 	sudo fastboot flash bootloader $OUTPUT_DIR/bootloader.img
 fi
-sudo fastboot flash env $OUTPUT_DIR/params.bin
 
 echo "Fusing boot image..."
 sudo fastboot flash boot $OUTPUT_DIR/boot.img
@@ -59,6 +58,8 @@ echo "Fusing rootfs image..."
 
 sudo fastboot flash setenv $OUTPUT_DIR/partition.txt
 sudo fastboot flash -S 0 rootfs $OUTPUT_DIR/rootfs.img
+
+sudo fastboot flash env $OUTPUT_DIR/params.bin
 
 sudo fastboot reboot
 
