@@ -9,4 +9,4 @@ flash=mmc,0:boot:ext4:0x800000,0x1000000:boot.img;
 flash=mmc,0:boot_ota:ext4:0x1800000,0x1000000:boot.img;
 flash=mmc,0:modules:ext4:0x2900000,0x1400000:modules.img;
 flash=mmc,0:modules_ota:ext4:0x3E00000,0x1400000:modules.img;
-flash=mmc,0:rootfs:ext4:0x5300000,0:rootfs.img;
+flash=mmc,0:rootfs:ext4:0x5300000,0x1ad00000:rootfs.img;
