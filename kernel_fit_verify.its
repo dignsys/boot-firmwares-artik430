@@ -1,0 +1,103 @@
+/dts-v1/;
+
+/ {
+	description = "Linux kernel and FDT blob for ARTIK-530";
+	#address-cells = <1>;
+
+	images {
+		kernel {
+			description = "Linux kernel for ARTIK-530";
+			data = /incbin/("./zImage");
+			type = "kernel";
+			arch = "arm";
+			os = "linux";
+			compression = "none";
+			load = <0x91080000>;
+			entry = <0x91080000>;
+			hash {
+				algo = "sha1";
+			};
+			signature {
+				required = "image";
+				algo = "sha1,rsa2048";
+				key-name-hint = "dev";
+			};
+		};
+		ramdisk {
+			description = "ramdisk";
+			data = /incbin/("./initrd.gz");
+			type = "ramdisk";
+			arch = "arm";
+			os = "linux";
+			compression = "gzip";
+			load = <0x9a000000>;
+			hash {
+				algo = "sha1";
+			};
+			signature {
+				required = "image";
+				algo = "sha1,rsa2048";
+				key-name-hint = "dev";
+			};
+		};
+		fdt-rev00 {
+			description = "FDT blob for artik530 rev00";
+			data = /incbin/("./s5p4418-artik530-raptor-rev00.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			load = <0x9b000000>;
+			hash {
+				algo = "sha1";
+			};
+			signature {
+				required = "image";
+				algo = "sha1,rsa2048";
+				key-name-hint = "dev";
+			};
+		};
+		fdt-rev03 {
+			description = "FDT blob for artik530 rev03";
+			data = /incbin/("./s5p4418-artik530-raptor-rev03.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			load = <0x9b000000>;
+			hash {
+				algo = "sha1";
+			};
+			signature {
+				required = "image";
+				algo = "sha1,rsa2048";
+				key-name-hint = "dev";
+			};
+		};
+	};
+	configurations {
+		default = "rev03";
+		rev00 {
+			description = "Boot Linux kernel with FDT blob";
+			kernel = "kernel";
+			ramdisk = "ramdisk";
+			fdt = "fdt-rev00";
+			signature {
+				required = "image";
+				algo = "sha1,rsa2048";
+				key-name-hint = "dev";
+				sign-images = "fdt", "kernel", "ramdisk";
+			};
+		};
+		rev03 {
+			description = "Boot Linux kernel with FDT blob";
+			kernel = "kernel";
+			ramdisk = "ramdisk";
+			fdt = "fdt-rev03";
+			signature {
+				required = "image";
+				algo = "sha1,rsa2048";
+				key-name-hint = "dev";
+				sign-images = "fdt", "kernel", "ramdisk";
+			};
+		};
+	};
+};
