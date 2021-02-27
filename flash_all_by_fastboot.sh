@@ -39,7 +39,7 @@ fi
 
 echo "Fusing bootloader binaries..."
 sudo fastboot flash partmap $OUTPUT_DIR/partmap_emmc.txt
-sudo fastboot flash 2ndboot $OUTPUT_DIR/bl1-emmcboot.img
+sudo fastboot flash 2ndboot $OUTPUT_DIR/bl1-emmcboot.bin
 
 if [ "$CHECK_OTA" != "" ]; then
 	sudo fastboot flash flag $OUTPUT_DIR/flag.img
